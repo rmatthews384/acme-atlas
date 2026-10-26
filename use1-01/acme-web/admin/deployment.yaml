@@ -6,7 +6,7 @@ metadata:
     app.kubernetes.io/name: admin
     app.kubernetes.io/part-of: acme-web
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app.kubernetes.io/name: admin
