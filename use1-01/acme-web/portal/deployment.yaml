@@ -6,7 +6,7 @@ metadata:
     app.kubernetes.io/name: portal
     app.kubernetes.io/part-of: acme-web
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app.kubernetes.io/name: portal
