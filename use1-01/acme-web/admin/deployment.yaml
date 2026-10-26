@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: admin
+  labels:
+    app.kubernetes.io/name: admin
+    app.kubernetes.io/part-of: acme-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: admin
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: admin
+    spec:
+      containers:
+        - name: admin
+          image: public.ecr.aws/docker/library/nginx:1.27-alpine
+          ports:
+            - name: http
+              containerPort: 80
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 200m
+              memory: 128Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: admin
+  labels:
+    app.kubernetes.io/name: admin
+spec:
+  selector:
+    app.kubernetes.io/name: admin
+  ports:
+    - name: http
+      port: 80
+      targetPort: http
